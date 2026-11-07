@@ -35,6 +35,12 @@
       font-weight: 700;
       min-height: 3rem;
     }
+    #zeit {
+      font-size: 1.25rem;
+      min-height: 1.5rem;
+      text-align: center;
+      padding: 0 16px;
+    }
     @media (prefers-color-scheme: dark) {
       body { background: #000; color: #f2f2f7; }
     }
@@ -43,10 +49,19 @@
 <body>
   <button id="knopf">Klick mich</button>
   <div id="ausgabe"></div>
+  <div id="zeit"></div>
 
   <script>
     document.getElementById("knopf").addEventListener("click", function () {
+      var jetzt = new Date();
       document.getElementById("ausgabe").textContent = "Hello World";
+      document.getElementById("zeit").textContent =
+        jetzt.toLocaleDateString("de-DE", {
+          weekday: "long", day: "2-digit", month: "long", year: "numeric"
+        }) + ", " +
+        jetzt.toLocaleTimeString("de-DE", {
+          hour: "2-digit", minute: "2-digit", second: "2-digit"
+        }) + " Uhr";
     });
   </script>
 </body>
